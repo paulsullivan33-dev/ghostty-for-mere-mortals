@@ -1,0 +1,28 @@
+(every option, with its documentation, straight from the binary)
+
+$ ./ghostty-lab +show-config --default --docs | wc -l
+4070
+
+$ ./ghostty-lab +show-config --default | wc -l
+613
+
+(one option's documentation, as an example (the lines printed above the first 'font-size = ' line))
+
+$ ./ghostty-lab +show-config --default --docs | grep -B8 '^font-size = ' | head -12
+# (e.g. increased or decreased the font size). Terminals that have manually
+# adjusted their font size will retain their manually adjusted size.
+# Otherwise, the font size of existing terminals will be updated on
+# reload.
+# 
+# On Linux with GTK, font size is scaled according to both display-wide and
+# text-specific scaling factors, which are often managed by your desktop
+# environment (e.g. the GNOME display scale and large text settings).
+font-size = 12
+
+(the light/dark theme syntax, from the theme option's own documentation in the same dump)
+
+$ grep -A2 'light:theme-name' docs-dump.txt | head -4
+# syntax: `light:theme-name,dark:theme-name`. For example:
+# `light:Rose Pine Dawn,dark:Rose Pine`. Whitespace around all values are
+# trimmed and order of light and dark does not matter. Both light and dark
+

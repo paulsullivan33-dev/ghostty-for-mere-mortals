@@ -1,0 +1,28 @@
+site_name: Ghostty for Mere Mortals
+site_description: A fast GPU-accelerated terminal emulator with a plain-text config file. Choosing from hundreds of built-in themes, setting fonts and keybinds, and checking every claim from the command line before a window ever opens, with the limits stated plainly.
+site_url: https://paulsullivan33-dev.github.io/ghostty-for-mere-mortals/
+copyright: 'Part of <a href="https://paulsullivan33-dev.github.io/mere-mortals/">For Mere Mortals</a> · Text CC BY 4.0, code MIT'
+
+# Guides live at the repo root (nice for GitHub browsing).
+# The deploy workflow copies them into docs/ before building.
+theme:
+  name: material
+
+nav:
+  - Home: index.md
+  - What Ghostty Is: what-ghostty-is.md
+  - The Moving Parts: the-moving-parts.md
+  - Installing Ghostty: installing-ghostty.md
+  - Your First Window: your-first-window.md
+  - The Config File: the-config-file.md
+  - Themes and Colour: themes-and-colour.md
+  - Fonts: fonts.md
+  - Keybinds and Actions: keybinds-and-actions.md
+  - Splits, Tabs and Windows: splits-tabs-and-windows.md
+  - Shell Integration: shell-integration.md
+  - Recipes: recipes.md
+  - The Neighbours: the-neighbours.md
+  - Limits: limits.md
+  - Troubleshooting: troubleshooting.md
+  - Glossary: glossary.md
+  - Writing Criteria: criteria.md

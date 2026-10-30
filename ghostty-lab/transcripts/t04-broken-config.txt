@@ -1,0 +1,23 @@
+(four deliberate mistakes — also kept in the guide as ghostty-lab/config.broken.example)
+
+$ cat broken-config
+# Deliberately broken in four different ways
+font-size = banana
+window-width = -5
+keybind = ctrl+shift+x=no_such_action
+this-key-does-not-exist = true
+
+$ cp xdg/ghostty/config config.good && cp broken-config xdg/ghostty/config
+
+$ ./ghostty-lab +validate-config
+/home/hatch/workspace/ghostty-labwork/xdg/ghostty/config:2:font-size: invalid value "banana"
+/home/hatch/workspace/ghostty-labwork/xdg/ghostty/config:3:window-width: invalid value "-5"
+/home/hatch/workspace/ghostty-labwork/xdg/ghostty/config:4:keybind: unknown error error.InvalidAction
+/home/hatch/workspace/ghostty-labwork/xdg/ghostty/config:5:this-key-does-not-exist: unknown field
+exit=1
+
+$ cp config.good xdg/ghostty/config && rm config.good
+
+$ ./ghostty-lab +validate-config
+exit=0
+

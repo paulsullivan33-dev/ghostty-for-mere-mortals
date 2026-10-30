@@ -1,0 +1,5 @@
+# Deliberately broken in four different ways
+font-size = banana
+window-width = -5
+keybind = ctrl+shift+x=no_such_action
+this-key-does-not-exist = true

@@ -1,0 +1,32 @@
+$ ./ghostty-lab +list-fonts | wc -l
+2573
+
+$ ./ghostty-lab +list-fonts | grep -A4 '^DejaVu Sans Mono'
+DejaVu Sans Mono
+  DejaVu Sans Mono
+  DejaVu Sans Mono Bold
+  DejaVu Sans Mono Bold Oblique
+  DejaVu Sans Mono Oblique
+
+(which face will actually draw a given character, under the lab config (font-family = DejaVu Sans Mono))
+
+$ ./ghostty-lab +show-face --cp=0x41
+U+41 « A » found in face “DejaVu Sans Mono”.
+
+$ ./ghostty-lab +show-face --cp=0x2192
+U+2192 « → » found in face “DejaVu Sans Mono”.
+
+$ ./ghostty-lab +show-face --cp=0x1F600 --presentation=emoji
+U+1F600 « 😀 » found in face “Noto Color Emoji”.
+
+$ ./ghostty-lab +show-face '--string=a→b'
+U+61 « a » found in face “DejaVu Sans Mono”.
+U+2192 « → » found in face “DejaVu Sans Mono”.
+U+62 « b » found in face “DejaVu Sans Mono”.
+
+(the same request with a space instead of '=' fails — the equals form is the reliable one)
+
+$ ./ghostty-lab +show-face --string 'a→b'
+config error: cli:2:string: value required
+exit=1
+

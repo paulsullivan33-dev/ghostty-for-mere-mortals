@@ -1,0 +1,10 @@
+# A small, ordinary starter config (written for this lab)
+theme = "Catppuccin Mocha"
+font-family = DejaVu Sans Mono
+font-size = 13
+window-width = 100
+window-height = 32
+cursor-style = bar
+mouse-hide-while-typing = true
+keybind = ctrl+shift+n=new_window
+keybind = f11=toggle_fullscreen

@@ -1,0 +1,61 @@
+(the lab machine)
+
+$ uname -m
+x86_64
+
+$ lsb_release -d
+Description:	Ubuntu 24.04.5 LTS
+
+(the community .deb for Ubuntu 24.04, from the ghostty-ubuntu project on GitHub (release 1.3.1-0-ppa2))
+
+$ ls -la ghostty.deb
+-rw-rw---- 1 root root 18488130 Oct 30 05:59 ghostty.deb
+
+$ sha256sum ghostty.deb
+478d440153ef544426418efc7d6d8901715359f452c46be29071901a94b8cd47  ghostty.deb
+
+(the release API publishes sha256:478d440153ef544426418efc7d6d8901715359f452c46be29071901a94b8cd47 for this file — the sums match)
+
+$ dpkg-deb -f ghostty.deb Package Version Depends
+Package: ghostty
+Version: 1.3.1-0~ppa2
+Depends: libadwaita-1-0, libc6, libfontconfig1, libfreetype6, libglib2.0-0t64 | libglib2.0-0, libgtk-4-1, libharfbuzz0b, libonig5, libx11-6
+
+(no system install in the lab: the package is unpacked into a folder and run from there)
+
+$ ls -la root/usr/bin/
+total 27244
+drwxr-xr-x 1 root root       14 Apr  1  2026 .
+drwxr-xr-x 1 root root       36 Feb 24  2026 ..
+-rwxr-xr-x 1 root root 27895408 Apr  1  2026 ghostty
+
+$ ldd root/usr/bin/ghostty | grep 'not found'
+	libgtk-4.so.1 => not found
+	libadwaita-1.so.0 => not found
+	libgtk4-layer-shell.so => not found
+
+(three libraries missing from the bare system. two are Ubuntu 24.04 packages, downloaded as .debs and unpacked beside the binary (with two small libraries they themselves needed))
+
+$ for d in libgtk-4-1_*.deb libadwaita-1-0_*.deb libappstream5_*.deb libstemmer0d_*.deb libxmlb2_*.deb; do dpkg-deb -f $d Package Version; done
+Package: libgtk-4-1
+Version: 4.14.5+ds-0ubuntu0.10
+Package: libadwaita-1-0
+Version: 1.5.0-1ubuntu2
+Package: libappstream5
+Version: 1.0.2-1build6
+Package: libstemmer0d
+Version: 2.2.0-4build1
+Package: libxmlb2
+Version: 0.3.24-1~ubuntu0.24.04.1
+
+(gtk4-layer-shell is not packaged for Ubuntu 24.04; Debian's package is unpacked the same way)
+
+$ dpkg-deb -f layer-shell.deb Package Version
+Package: libgtk4-layer-shell0
+Version: 1.0.4-2
+
+(with those libraries on LD_LIBRARY_PATH (the ghostty-lab wrapper script sets it), nothing is missing)
+
+$ LD_LIBRARY_PATH=... ldd root/usr/bin/ghostty | grep -c 'not found'
+0
+

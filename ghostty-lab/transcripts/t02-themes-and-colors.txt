@@ -1,0 +1,65 @@
+$ ./ghostty-lab +list-themes | wc -l
+463
+
+$ ./ghostty-lab +list-themes | head -12
+0x96f (resources)
+12-bit Rainbow (resources)
+3024 Day (resources)
+3024 Night (resources)
+Aardvark Blue (resources)
+Abernathy (resources)
+Adventure (resources)
+Adventure Time (resources)
+Adwaita (resources)
+Adwaita Dark (resources)
+Afterglow (resources)
+Aizen Dark (resources)
+
+$ ./ghostty-lab +list-themes | grep -i 'catppuccin'
+Catppuccin Frappe (resources)
+Catppuccin Latte (resources)
+Catppuccin Macchiato (resources)
+Catppuccin Mocha (resources)
+
+(a theme file is itself a small config file)
+
+$ head -16 'root/usr/share/ghostty/themes/Catppuccin Mocha'
+palette = 0=#45475a
+palette = 1=#f38ba8
+palette = 2=#a6e3a1
+palette = 3=#f9e2af
+palette = 4=#89b4fa
+palette = 5=#f5c2e7
+palette = 6=#94e2d5
+palette = 7=#a6adc8
+palette = 8=#585b70
+palette = 9=#f37799
+palette = 10=#89d88b
+palette = 11=#ebd391
+palette = 12=#74a8fc
+palette = 13=#f2aede
+palette = 14=#6bd7ca
+palette = 15=#bac2de
+
+$ ./ghostty-lab +list-colors | wc -l
+617
+
+$ ./ghostty-lab +list-colors | head -5
+alice blue = #f0f8ff
+AliceBlue = #f0f8ff
+antique white = #faebd7
+AntiqueWhite = #faebd7
+AntiqueWhite1 = #ffefdb
+
+(the shell integration scripts ship inside the resources folder)
+
+$ ls root/usr/share/ghostty/shell-integration/
+bash
+elvish
+fish
+nushell
+zsh
+
+$ ls root/usr/share/ghostty/shell-integration/zsh/
+ghostty-integration
+
